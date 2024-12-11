@@ -1,0 +1,78 @@
+class StudentStack {
+    private Student[] stack;
+    private int top;
+    private static final int MAX_SIZE = 10000; // Maximum size of the stack
+
+    public StudentStack() {
+        stack = new Student[MAX_SIZE];
+        top = -1; // Stack is empty
+    }
+
+    // Kiểm tra nếu stack đầy
+    public boolean isFull() {
+        return top == MAX_SIZE - 1; // Ensure that stack doesn't exceed 10,000
+    }
+
+    // Kiểm tra nếu stack rỗng
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Thêm sinh viên vào stack
+    public void push(Student student) {
+        if (isFull()) {
+            System.out.println("Stack is full. Cannot add more students.");
+            return;
+        }
+        stack[++top] = student;
+    }
+
+    // Lấy sinh viên từ stack
+    public Student pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. No students to remove.");
+            return null;
+        }
+        return stack[top--];
+    }
+
+    // Xem sinh viên ở đỉnh stack mà không loại bỏ
+    public Student peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.");
+            return null;
+        }
+        return stack[top];
+    }
+
+    // Lấy số lượng sinh viên trong stack
+    public int size() {
+        return top + 1;
+    }
+
+    // In ra tất cả sinh viên trong stack
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("No students to display.");
+        } else {
+            System.out.println("\nList of Students in Stack:");
+            for (int i = top; i >= 0; i--) {
+                System.out.println(stack[i]);
+            }
+        }
+    }
+
+    // Convert stack to an array
+    public Student[] toArray() {
+        Student[] array = new Student[size()];
+        for (int i = 0; i <= top; i++) {
+            array[i] = stack[i];
+        }
+        return array;
+    }
+
+    // Clear the stack
+    public void clear() {
+        top = -1; // Reset the stack to empty
+    }
+}
